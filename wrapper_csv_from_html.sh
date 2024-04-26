@@ -15,8 +15,9 @@ for dir in "$folder_path"/*; do
     echo "Processing folder: $dir"
     # Navigate to the folder and run html_extraction.py
     cd "$dir" || exit
-    python /home/gyanesh/Scripts/html_extraction.py
-    regions_info.csv >> ../all_regions.csv
+    python /home/gyanesh/Scripts/csv_from_html.py
+    cat regions_info.csv >> ../all_regions.csv
+    rm regions_info.csv
     # Navigate back to the original directory
     cd - || exit
   fi
