@@ -41,4 +41,4 @@ with open('regions_info.csv', 'w', newline='') as csvfile:
         # Write row to CSV file
         writer.writerow([region, type, from, to, mibig, mibig_type, similarity])
 
-print("CSV file 'regions_info.csv' has been created successfully!")
+print("Done!")
