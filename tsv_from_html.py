@@ -2,8 +2,6 @@ import os
 import csv
 from bs4 import BeautifulSoup
 
-os.chdir("/home/user/yourpath")
-
 # Parse the HTML file
 with open('index.html', 'r') as file:
     soup = BeautifulSoup(file, 'html.parser')
@@ -26,21 +24,21 @@ with open('regions_info.csv', 'w', newline='') as csvfile:
             # Handle the case where the row has fewer than 7 columns
             region = cells[0].text.strip() if len(cells) > 0 else ''
             type = cells[1].text.strip() if len(cells) > 1 else ''
-            size = cells[2].text.strip() if len(cells) > 2 else ''
-            split_left = cells[3].text.strip() if len(cells) > 3 else ''
-            link = cells[4].text.strip() if len(cells) > 4 else ''
-            description = cells[5].text.strip() if len(cells) > 5 else ''
+            from = cells[2].text.strip() if len(cells) > 2 else ''
+            to = cells[3].text.strip() if len(cells) > 3 else ''
+            mibig = cells[4].text.strip() if len(cells) > 4 else ''
+            mibig_type = cells[5].text.strip() if len(cells) > 5 else ''
             similarity = cells[6].text.strip() if len(cells) > 6 else ''
         else:
             region = cells[0].text.strip()
             type = cells[1].text.strip()
-            size = cells[2].text.strip()
-            split_left = cells[3].text.strip()
-            link = cells[4].text.strip()
-            description = cells[5].text.strip()
+            from = cells[2].text.strip()
+            to = cells[3].text.strip()
+            mibig = cells[4].text.strip()
+            mibig_type = cells[5].text.strip()
             similarity = cells[6].text.strip()
 
         # Write row to CSV file
-        writer.writerow([region, type, size, split_left, link, description, similarity])
+        writer.writerow([region, type, from, to, mibig, mibig_type, similarity])
 
 print("CSV file 'regions_info.csv' has been created successfully!")
