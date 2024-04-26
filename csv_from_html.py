@@ -2,43 +2,45 @@ import os
 import csv
 from bs4 import BeautifulSoup
 
-# Parse the HTML file
+# Get the current working directory
+current_dir = os.getcwd()
+directory_name = os.path.basename(current_dir)
+
+# Load the HTML file
 with open('index.html', 'r') as file:
-    soup = BeautifulSoup(file, 'html.parser')
+    html_content = file.read()
 
-# Find the table with the region information
-table = soup.find('table', class_='cc-heat-table')
+# Parse the HTML using BeautifulSoup
+soup = BeautifulSoup(html_content, 'html.parser')
 
-# Open the CSV file for writing
-with open('regions_info.csv', 'w', newline='') as csvfile:
-    writer = csv.writer(csvfile)
+# Find the table elements
+tables = soup.find_all('table', class_='region-table')
 
-    # Write header row
-    writer.writerow(['Region', 'Type', 'From', 'To', 'Most similar known cluster', 'miBiG Type', 'Similarity'])
-
-    # Find all table rows in the tbody
-    for row in soup.find('tbody').find_all('tr'):
-        # Extract data from each row
+# Extract the data from the tables
+data = []
+for table in tables:
+    rows = table.find_all('tr')
+    for row in rows:
         cells = row.find_all('td')
-        if len(cells) < 7:
-            # Handle the case where the row has fewer than 7 columns
-            region = cells[0].text.strip() if len(cells) > 0 else ''
-            type = cells[1].text.strip() if len(cells) > 1 else ''
-            from = cells[2].text.strip() if len(cells) > 2 else ''
-            to = cells[3].text.strip() if len(cells) > 3 else ''
-            mibig = cells[4].text.strip() if len(cells) > 4 else ''
-            mibig_type = cells[5].text.strip() if len(cells) > 5 else ''
-            similarity = cells[6].text.strip() if len(cells) > 6 else ''
-        else:
+        if len(cells) >= 7:
             region = cells[0].text.strip()
-            type = cells[1].text.strip()
-            from = cells[2].text.strip()
-            to = cells[3].text.strip()
+            region_type = cells[1].text.strip()
+            region_from = cells[2].text.strip()
+            region_to = cells[3].text.strip().replace(',', '')
             mibig = cells[4].text.strip()
             mibig_type = cells[5].text.strip()
             similarity = cells[6].text.strip()
+            data.append([directory_name, region, region_type, region_from, region_to, mibig, mibig_type, similarity])
+        elif len(cells) >= 4:
+            region = cells[0].text.strip()
+            region_type = cells[1].text.strip()
+            region_from = cells[2].text.strip()
+            region_to = cells[3].text.strip().replace(',', '')
+            data.append([directory_name, region, region_type, region_from, region_to, '', '', ''])
 
-        # Write row to CSV file
-        writer.writerow([region, type, from, to, mibig, mibig_type, similarity])
-
-print("Done!")
+# Write the data to a CSV file
+with open('regions_info.csv', 'w', newline='') as csvfile:
+    writer = csv.writer(csvfile)
+    # Write header row
+    #writer.writerow(['Directory', 'Region', 'Type', 'From', 'To', 'Most similar known cluster', 'Similarity'])
+    writer.writerows(data)
