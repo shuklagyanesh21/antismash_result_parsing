@@ -1,2 +1,26 @@
-# antismash_result_parsing
-antismash 7 results in genbank and json formats are parsed to give outputs in tsv format
+# AntiSMASH Result Parsing
+
+This repository contains scripts to parse AntiSMASH 7 results provided in GenBank and JSON formats into user-friendly TSV outputs. The project simplifies the analysis of AntiSMASH results, making it easier to extract relevant information for downstream applications.
+
+## Features
+
+- Parses AntiSMASH 7 output files in GenBank and JSON formats.
+- Converts the parsed data into TSV format for easy readability and further analysis.
+- Supports efficient and customizable workflows for handling AntiSMASH results.
+
+## Repository Details
+
+- **Languages Used**: 
+  - Python (88.8%)
+  - Shell (11.2%)
+
+- **Primary Functionality**:
+  - Parsing AntiSMASH result files.
+  - Generating concise, tabular summaries from complex data files.
+
+## Installation
+
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/shuklagyanesh21/antismash_result_parsing.git
+   cd antismash_result_parsing
