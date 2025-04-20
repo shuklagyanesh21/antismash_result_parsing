@@ -29,38 +29,37 @@ This repository contains scripts to parse AntiSMASH 7 results provided in GenBan
 
 Contributions to this project are welcome and appreciated! To contribute, please follow these steps:
 
-1. **Fork the Repository**  
-   Start by forking this repository to your GitHub account.
+1. **Fork the Repository**
+  Start by forking this repository to your GitHub account.
 
 2. **Clone Your Fork**  
-   Clone the forked repository to your local machine using the following command:
+  Clone the forked repository to your local machine using the following command:
    ```bash
    git clone https://github.com/<your-username>/antismash_result_parsing.git
-   
+   ```
+
 3. **Create a Branch**
   ```bash
   git checkout -b feature-name
   ```
 
-4. **Make Changes**
+4. ****Make Changes**
    Nothing much to change but you can definetly add better parsing scripts.
-   
-6. **Test your changes**
+
+5. **Test your changes**
   Its fine even if you dont, be confident xD
-   
-8. **Commit Your Changes**
+
+6. **Commit Your Changes**
   Commit your changes with a clear and descriptive message:
   ```bash
   git commit -m "Add a brief description of your changes"
   ```
 
-8. **Push To Your Fork**
+7. **Push To Your Fork**
    Push your branch to your forked repository:
-   ```bash
+  ```bash
    git push origin feature-name
-   
-9. **Submit a Pull Request**
+  ```
+
+8. **Submit a Pull Request**
    Open a pull request on the original repository.
-
-
- 
